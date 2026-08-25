@@ -12,5 +12,16 @@ Remember, it's self-paced so feel free to take a break! ☕️
 
 ---
 
+## Executar a aplicação
+
+A partir da raiz do projeto, instale as dependências e inicie o servidor:
+
+```bash
+pip install -r requirements.txt
+uvicorn src.app:app --reload
+```
+
+A aplicação estará disponível em http://localhost:8000. A documentação da API pode ser acessada em http://localhost:8000/docs.
+
 &copy; 2025 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
 
