@@ -23,25 +23,31 @@ document.addEventListener("DOMContentLoaded", () => {
         const participantsList =
           details.participants.length > 0
             ? details.participants
-                .map(
-                  (participant) => `
+                .map((participant) => {
+                  const safeParticipant = String(participant)
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/\"/g, "&quot;")
+                    .replace(/'/g, "&#39;");
+                  return `
                   <li>
-                    <span class="participant-email">${participant}</span>
+                    <span class="participant-email">${safeParticipant}</span>
                     <button
                       type="button"
                       class="remove-participant-btn"
                       data-activity="${name}"
-                      data-email="${participant}"
-                      aria-label="Remove ${participant} from ${name}"
+                      data-email="${safeParticipant}"
+                      aria-label="Remove ${safeParticipant} from ${name}"
                       title="Unregister participant"
                     >
                       &times;
                     </button>
                   </li>
-                `
-                )
+                `;
+                })
                 .join("")
-            : "<li class=\"empty-state\">No participants yet</li>";
+            : '<li class="empty-state">No participants yet</li>';
 
         activityCard.innerHTML = `
           <h4>${name}</h4>
